@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Blog System</title>
+
+<style>
+body{font-family:Arial;background:#121212;color:white;text-align:center;}
+.container{width:400px;margin:auto;background:#1e1e1e;padding:20px;border-radius:10px;}
+input,textarea,button{width:90%;padding:10px;margin:5px;}
+button{background:#00ff99;border:none;cursor:pointer;}
+.card{background:#2d2d2d;margin-top:10px;padding:10px;border-radius:8px;}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h2>Blog Platform</h2>
+
+<input id="title" placeholder="Blog Title">
+<textarea id="content" placeholder="Blog Content"></textarea>
+<button onclick="addBlog()">Create Blog</button>
+
+<div id="blogs"></div>
+
+</div>
+
+<script>
+let blogs = JSON.parse(localStorage.getItem("blogs")) || [];
+
+function addBlog(){
+    blogs.push({
+        title: title.value,
+        content: content.value,
+        comments:[]
+    });
+
+    localStorage.setItem("blogs",JSON.stringify(blogs));
+    render();
+}
+
+function addComment(i){
+    let c = prompt("Enter comment");
+    blogs[i].comments.push(c);
+    localStorage.setItem("blogs",JSON.stringify(blogs));
+    render();
+}
+
+function render(){
+    blogsList.innerHTML = "";
+    blogs.forEach((b,i)=>{
+        blogsList.innerHTML += `
+        <div class="card">
+        <h3>${b.title}</h3>
+        <p>${b.content}</p>
+        <button onclick="addComment(${i})">Comment</button>
+        <p>${b.comments.join("<br>")}</p>
+        </div>
+        `;
+    });
+}
+
+render();
+</script>
+
+</body>
+</html>

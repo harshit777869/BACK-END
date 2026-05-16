@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Recommendation Engine</title>
+
+<style>
+body{font-family:Arial;background:#121212;color:white;text-align:center;}
+.box{width:400px;margin:auto;background:#1e1e1e;padding:20px;border-radius:10px;}
+button{padding:10px;background:#00ff99;border:none;cursor:pointer;}
+.card{background:#2d2d2d;margin:10px;padding:10px;border-radius:8px;}
+</style>
+</head>
+<body>
+
+<div class="box">
+
+<h2>Recommendation System</h2>
+
+<button onclick="recommend()">Get Recommendations</button>
+
+<div id="out"></div>
+
+</div>
+
+<script>
+let items = ["Movie: Avengers","Movie: Titanic","Game: GTA","Song: AR Rahman"];
+
+function recommend(){
+    out.innerHTML = "";
+
+    items.forEach(i=>{
+        if(i.includes("Movie")){
+            out.innerHTML += `<div class="card">${i}</div>`;
+        }
+    });
+}
+</script>
+
+</body>
+</html>
